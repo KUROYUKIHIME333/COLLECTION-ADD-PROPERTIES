@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-gray-900 text-gray-100">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Outil de Mise à Jour de Collection Firestore</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+
+    <body
+        class="min-h-screen flex flex-col items-center p-6 font-sans bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
+
+        <h1
+            class="text-3xl font-extrabold mb-8 text-green-400 drop-shadow-lg">Outil
+            de mise à jour Firestore</h1>
+
+        <div
+            class="w-full max-w-xl bg-gray-800 rounded-lg shadow-lg p-6 space-y-6">
+
+            <div>
+                <label for="targetCollection"
+                    class="block mb-1 font-semibold text-gray-300">Collection à
+                    modifier (cible)</label>
+                <input type="text" id="targetCollection"
+                    placeholder="Ex: mouvements"
+                    class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:outline-none focus:border-green-400 transition" />
+            </div>
+
+            <div>
+                <label for="refFieldInTarget"
+                    class="block mb-1 font-semibold text-gray-300">Champ
+                    référence dans la collection cible</label>
+                <input type="text" id="refFieldInTarget"
+                    placeholder="Ex: organisationId"
+                    class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:outline-none focus:border-green-400 transition" />
+            </div>
+
+            <div>
+                <label for="sourceCollection"
+                    class="block mb-1 font-semibold text-gray-300">Collection
+                    source (à chercher)</label>
+                <input type="text" id="sourceCollection"
+                    placeholder="Ex: organisations"
+                    class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:outline-none focus:border-green-400 transition" />
+            </div>
+
+            <div>
+                <label for="refFieldInSource"
+                    class="block mb-1 font-semibold text-gray-300">Champ
+                    référence dans la collection source</label>
+                <input type="text" id="refFieldInSource"
+                    placeholder="Ex: codeOrganisation"
+                    class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:outline-none focus:border-green-400 transition" />
+            </div>
+
+            <div>
+                <label for="fieldsMapping"
+                    class="block mb-1 font-semibold text-gray-300">Mapping
+                    champs (JSON)</label>
+                <textarea id="fieldsMapping" rows="6"
+                    placeholder='Ex: { "organisation": { "référence": "ref", "désignation": "nom" }, "autreChamp": "champSource" }'
+                    class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 font-mono text-green-300 focus:outline-none focus:border-green-400 transition resize-y"></textarea>
+            </div>
+
+            <div>
+                <label for="firebaseConfig"
+                    class="block mb-1 font-semibold text-gray-300">Firebase
+                    config (objet JSON)</label>
+                <textarea id="firebaseConfig" rows="6"
+                    placeholder='Ex: { "apiKey": "...", "authDomain": "...", "projectId": "..." }'
+                    class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 font-mono text-green-300 focus:outline-none focus:border-green-400 transition resize-y"></textarea>
+            </div>
+
+            <button id="startBtn"
+                class="w-full py-3 bg-green-500 hover:bg-green-600 rounded-md font-bold text-gray-900 shadow-md transition">
+                Lancer la mise à jour
+            </button>
+
+            <div id="log"
+                class="mt-6 h-48 overflow-y-auto bg-gray-700 text-green-300 font-mono text-sm p-4 rounded-md whitespace-pre-wrap"></div>
+
+        </div>
+
+        <!-- Firebase compat -->
+        <script
+            src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+        <script
+            src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+        <!-- Script JS externe -->
+        <script src="/script.js"></script>
+
+    </body>
+</html>

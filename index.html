@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-gray-900 text-gray-100">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Présentation de l'Outil de Mise à Jour Firestore</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(to bottom, #111827, #1f2937, #111827);
+        }
+        pre {
+            background-color: #111827;
+            border: 1px solid #374151;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', Courier, monospace;
+            color: #6ee7b7;
+        }
+    </style>
+    </head>
+
+    <body class="min-h-screen flex flex-col items-center p-4 md:p-8">
+
+        <div
+            class="w-screen bg-gray-800 rounded-lg shadow-lg p-6 space-y-6 md:max-w-2xl md:p-8 md:space-y-8">
+            <h1
+                class="text-3xl sm:text-4xl font-extrabold text-green-400 text-center drop-shadow-lg">
+                Outil de Mise à Jour Firestore
+            </h1>
+
+            <div class="space-y-4">
+                <h2
+                    class="text-xl sm:text-2xl font-bold text-gray-200 border-b border-gray-700 pb-2">
+                    À propos de l'outil
+                </h2>
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    Cet outil web simple a été conçu pour automatiser la mise à
+                    jour de documents dans une collection
+                    Firestore. Il permet de synchroniser les données d'une
+                    <strong>collection cible</strong> en y copiant des
+                    champs provenant d'une <strong>collection source</strong>,
+                    en se basant sur une valeur de référence
+                    commune aux deux documents.
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <h2
+                    class="text-xl sm:text-2xl font-bold text-gray-200 border-b border-gray-700 pb-2">
+                    Comment l'utiliser
+                </h2>
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    L'interface est composée de plusieurs champs à remplir.
+                    Chacun joue un rôle essentiel pour guider
+                    le processus de mise à jour.
+                </p>
+                <ul
+                    class="list-disc list-inside space-y-2 text-gray-300 text-sm sm:text-base">
+                    <li><strong>Collection à modifier (cible)</strong> : Le nom
+                        de la collection qui sera mise à jour.</li>
+                    <li><strong>Champ référence dans la collection
+                            cible</strong> : Le nom du champ qui contient la
+                        valeur à utiliser pour trouver le document source.</li>
+                    <li><strong>Collection source (à chercher)</strong> : Le nom
+                        de la collection où se trouvent les données à
+                        copier.</li>
+                    <li><strong>Champ référence dans la collection
+                            source</strong> : Le nom du champ dans la collection
+                        source qui doit correspondre au champ référence de la
+                        cible.</li>
+                    <li><strong>Firebase config (objet JSON)</strong> : Les
+                        paramètres de connexion à votre projet Firebase.</li>
+                    <li><strong>Mapping champs (JSON)</strong> : La
+                        configuration cruciale qui définit les champs à
+                        copier.</li>
+                </ul>
+            </div>
+
+            <div class="space-y-4">
+                <h2
+                    class="text-xl sm:text-2xl font-bold text-gray-200 border-b border-gray-700 pb-2">
+                    Format du Mapping des Champs (JSON)
+                </h2>
+                <p class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                    Le mapping est un objet JSON qui lie les noms de champs de
+                    la <strong>collection cible</strong>
+                    aux noms de champs de la <strong>collection source</strong>.
+                </p>
+                <p class="text-gray-300 mt-4 text-sm sm:text-base">
+                    Pour un champ simple, la structure est directe :
+                </p>
+                <pre>
+{
+  "champCible": "champSource"
+}</pre>
+                <p class="text-gray-300 mt-4 text-sm sm:text-base">
+                    Pour copier des champs imbriqués, la structure se fait par
+                    des objets emboîtés :
+                </p>
+                <pre>
+{
+  "champCibleParent": {
+    "champCibleEnfant": "chemin.vers.champSource"
+  }
+}</pre>
+                <p class="text-gray-300 mt-4 text-sm sm:text-base">
+                    Exemple complet :
+                </p>
+                <pre>
+{
+  "organisation": {
+    "reference": "codeOrganisation",
+    "designation": "nom",
+    "adresse": "adresse.complete"
+  },
+  "type_element": "type"
+}</pre>
+            </div>
+        </div>
+
+    </body>
+</html>
