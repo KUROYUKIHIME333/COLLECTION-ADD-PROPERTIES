@@ -14,71 +14,181 @@
             class="text-3xl font-extrabold mb-8 text-green-400 drop-shadow-lg">Outil
             de mise à jour Firestore</h1>
 
-        <div
-            class="w-full max-w-xl bg-gray-800 rounded-lg shadow-lg p-6 space-y-6">
+        <div class="flex gap-24">
+            <div
+                class="w-screen bg-gray-800 rounded-lg shadow-lg p-6 space-y-6 md:max-w-2xl md:p-8 md:space-y-8">
 
-            <div>
-                <label for="targetCollection"
-                    class="block mb-1 font-semibold text-gray-300">Collection à
-                    modifier (cible)</label>
-                <input type="text" id="targetCollection"
-                    placeholder="Ex: mouvements"
-                    class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:outline-none focus:border-green-400 transition" />
+                <div class="space-y-4">
+                    <h2
+                        class="text-xl sm:text-2xl font-bold text-gray-200 border-b border-gray-700 pb-2">
+                        À propos de l'outil
+                    </h2>
+                    <p
+                        class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                        Cet outil web simple a été conçu pour automatiser la
+                        mise à
+                        jour de documents dans une collection
+                        Firestore. Il permet de synchroniser les données d'une
+                        <strong>collection cible</strong> en y copiant des
+                        champs provenant d'une <strong>collection
+                            source</strong>,
+                        en se basant sur une valeur de référence
+                        commune aux deux documents.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <h2
+                        class="text-xl sm:text-2xl font-bold text-gray-200 border-b border-gray-700 pb-2">
+                        Comment l'utiliser
+                    </h2>
+                    <p
+                        class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                        L'interface est composée de plusieurs champs à remplir.
+                        Chacun joue un rôle essentiel pour guider
+                        le processus de mise à jour.
+                    </p>
+                    <ul
+                        class="list-disc list-inside space-y-2 text-gray-300 text-sm sm:text-base">
+                        <li><strong>Collection à modifier (cible)</strong> : Le
+                            nom
+                            de la collection qui sera mise à jour.</li>
+                        <li><strong>Champ référence dans la collection
+                                cible</strong> : Le nom du champ qui contient la
+                            valeur à utiliser pour trouver le document
+                            source.</li>
+                        <li><strong>Collection source (à chercher)</strong> : Le
+                            nom
+                            de la collection où se trouvent les données à
+                            copier.</li>
+                        <li><strong>Champ référence dans la collection
+                                source</strong> : Le nom du champ dans la
+                            collection
+                            source qui doit correspondre au champ référence de
+                            la
+                            cible.</li>
+                        <li><strong>Firebase config (objet JSON)</strong> : Les
+                            paramètres de connexion à votre projet
+                            Firebase.</li>
+                        <li><strong>Mapping champs (JSON)</strong> : La
+                            configuration cruciale qui définit les champs à
+                            copier.</li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h2
+                        class="text-xl sm:text-2xl font-bold text-gray-200 border-b border-gray-700 pb-2">
+                        Format du Mapping des Champs (JSON)
+                    </h2>
+                    <p
+                        class="text-gray-300 leading-relaxed text-sm sm:text-base">
+                        Le mapping est un objet JSON qui lie les noms de champs
+                        de
+                        la <strong>collection cible</strong>
+                        aux noms de champs de la <strong>collection
+                            source</strong>.
+                    </p>
+                    <p class="text-gray-300 mt-4 text-sm sm:text-base">
+                        Pour un champ simple, la structure est directe :
+                    </p>
+                    <pre>
+{
+  "champCible": "champSource"
+}</pre>
+                    <p class="text-gray-300 mt-4 text-sm sm:text-base">
+                        Pour copier des champs imbriqués, la structure se fait
+                        par
+                        des objets emboîtés :
+                    </p>
+                    <pre>
+{
+  "champCibleParent": {
+    "champCibleEnfant": "chemin.vers.champSource"
+  }
+}</pre>
+                    <p class="text-gray-300 mt-4 text-sm sm:text-base">
+                        Exemple complet :
+                    </p>
+                    <pre>
+{
+  "organisation": {
+    "reference": "codeOrganisation",
+    "designation": "nom",
+    "adresse": "adresse.complete"
+  },
+  "type_element": "type"
+}</pre>
+                </div>
             </div>
 
-            <div>
-                <label for="refFieldInTarget"
-                    class="block mb-1 font-semibold text-gray-300">Champ
-                    référence dans la collection cible</label>
-                <input type="text" id="refFieldInTarget"
-                    placeholder="Ex: organisationId"
-                    class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:outline-none focus:border-green-400 transition" />
+            <div
+                class="w-full max-w-xl bg-gray-800 rounded-lg shadow-lg p-6 space-y-6">
+
+                <div>
+                    <label for="targetCollection"
+                        class="block mb-1 font-semibold text-gray-300">Collection
+                        à
+                        modifier (cible)</label>
+                    <input type="text" id="targetCollection"
+                        placeholder="Ex: mouvements"
+                        class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:outline-none focus:border-green-400 transition" />
+                </div>
+
+                <div>
+                    <label for="refFieldInTarget"
+                        class="block mb-1 font-semibold text-gray-300">Champ
+                        référence dans la collection cible</label>
+                    <input type="text" id="refFieldInTarget"
+                        placeholder="Ex: organisationId"
+                        class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:outline-none focus:border-green-400 transition" />
+                </div>
+
+                <div>
+                    <label for="sourceCollection"
+                        class="block mb-1 font-semibold text-gray-300">Collection
+                        source (à chercher)</label>
+                    <input type="text" id="sourceCollection"
+                        placeholder="Ex: organisations"
+                        class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:outline-none focus:border-green-400 transition" />
+                </div>
+
+                <div>
+                    <label for="refFieldInSource"
+                        class="block mb-1 font-semibold text-gray-300">Champ
+                        référence dans la collection source</label>
+                    <input type="text" id="refFieldInSource"
+                        placeholder="Ex: codeOrganisation"
+                        class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:outline-none focus:border-green-400 transition" />
+                </div>
+
+                <div>
+                    <label for="fieldsMapping"
+                        class="block mb-1 font-semibold text-gray-300">Mapping
+                        champs (JSON)</label>
+                    <textarea id="fieldsMapping" rows="6"
+                        placeholder='Ex: { "organisation": { "référence": "ref", "désignation": "nom" }, "autreChamp": "champSource" }'
+                        class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 font-mono text-green-300 focus:outline-none focus:border-green-400 transition resize-y"></textarea>
+                </div>
+
+                <div>
+                    <label for="firebaseConfig"
+                        class="block mb-1 font-semibold text-gray-300">Firebase
+                        config (objet JSON)</label>
+                    <textarea id="firebaseConfig" rows="6"
+                        placeholder='Ex: { "apiKey": "...", "authDomain": "...", "projectId": "..." }'
+                        class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 font-mono text-green-300 focus:outline-none focus:border-green-400 transition resize-y"></textarea>
+                </div>
+
+                <button id="startBtn"
+                    class="w-full py-3 bg-green-500 hover:bg-green-600 rounded-md font-bold text-gray-900 shadow-md transition">
+                    Lancer la mise à jour
+                </button>
+
+                <div id="log"
+                    class="mt-6 h-96 overflow-y-auto bg-gray-700 text-green-300 font-mono text-sm p-4 rounded-md whitespace-pre-wrap"></div>
+
             </div>
-
-            <div>
-                <label for="sourceCollection"
-                    class="block mb-1 font-semibold text-gray-300">Collection
-                    source (à chercher)</label>
-                <input type="text" id="sourceCollection"
-                    placeholder="Ex: organisations"
-                    class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:outline-none focus:border-green-400 transition" />
-            </div>
-
-            <div>
-                <label for="refFieldInSource"
-                    class="block mb-1 font-semibold text-gray-300">Champ
-                    référence dans la collection source</label>
-                <input type="text" id="refFieldInSource"
-                    placeholder="Ex: codeOrganisation"
-                    class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 focus:outline-none focus:border-green-400 transition" />
-            </div>
-
-            <div>
-                <label for="fieldsMapping"
-                    class="block mb-1 font-semibold text-gray-300">Mapping
-                    champs (JSON)</label>
-                <textarea id="fieldsMapping" rows="6"
-                    placeholder='Ex: { "organisation": { "référence": "ref", "désignation": "nom" }, "autreChamp": "champSource" }'
-                    class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 font-mono text-green-300 focus:outline-none focus:border-green-400 transition resize-y"></textarea>
-            </div>
-
-            <div>
-                <label for="firebaseConfig"
-                    class="block mb-1 font-semibold text-gray-300">Firebase
-                    config (objet JSON)</label>
-                <textarea id="firebaseConfig" rows="6"
-                    placeholder='Ex: { "apiKey": "...", "authDomain": "...", "projectId": "..." }'
-                    class="w-full rounded-md bg-gray-900 border border-gray-700 px-4 py-2 font-mono text-green-300 focus:outline-none focus:border-green-400 transition resize-y"></textarea>
-            </div>
-
-            <button id="startBtn"
-                class="w-full py-3 bg-green-500 hover:bg-green-600 rounded-md font-bold text-gray-900 shadow-md transition">
-                Lancer la mise à jour
-            </button>
-
-            <div id="log"
-                class="mt-6 h-48 overflow-y-auto bg-gray-700 text-green-300 font-mono text-sm p-4 rounded-md whitespace-pre-wrap"></div>
-
         </div>
 
         <!-- Firebase compat -->
