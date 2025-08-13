@@ -17,11 +17,42 @@
     <body
         class="min-h-screen flex flex-col items-center p-6 font-sans bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
 
-        <h1
-            class="text-3xl font-extrabold mb-8 text-green-400 drop-shadow-lg">Outil
-            de mise à jour Firestore</h1>
+        <header>
+            <div class="logo"> <svg viewBox="0 0 100 100" class="logo-svg">
+                    <circle cx="50" cy="50" r="45" fill="none"
+                        stroke="#00c0ff" stroke-width="3"
+                        stroke-dasharray="10 5">
+                        <animatetransform attributeName="transform"
+                            attributeType="XML" type="rotate" from="0 50 50"
+                            to="360 50 50" dur="20s"
+                            repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="50" cy="50" r="20" fill="#010c14"
+                        stroke="#00ff66" stroke-width="2" />
+                    <path d="M40 45 L50 55 L60 45 M50 55 L50 75"
+                        stroke="#00ff66" stroke-width="4"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <animatetransform attributeName="transform"
+                            attributeType="XML" type="translate"
+                            values="0 0; 0 -5; 0 0" dur="1.5s"
+                            repeatCount="indefinite" additive="sum" />
+                    </path>
+                    <text x="50" y="30" font-size="12" fill="#00ff66"
+                        text-anchor="middle" font-weight="bold">
+                        FBP
+                    </text>
+                    <text x="50" y="85" font-size="10" fill="#00c0ff"
+                        text-anchor="middle">
+                        PURGE
+                    </text>
+                </svg>
+            </div>
+            <h1
+                class="text-3xl font-extrabold mb-8 text-green-400 drop-shadow-lg">Outil
+                de mise à jour Firestore</h1>
+        </header>
 
-        <div class="flex flex-col md:flex-row gap-12 items-center">
+        <main class="flex flex-col md:flex-row gap-12 items-center">
             <div
                 class="w-screen bg-gray-800 rounded-lg shadow-lg p-6 space-y-6 md:max-w-2xl md:p-8 md:space-y-8">
 
@@ -196,7 +227,7 @@
                     class="mt-6 h-96 overflow-y-auto bg-gray-700 text-green-300 font-mono text-sm p-4 rounded-md whitespace-pre-wrap"></div>
 
             </div>
-        </div>
+        </main>
 
         <!-- Firebase compat -->
         <script
